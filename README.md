@@ -26,8 +26,8 @@ After installation of docker, the following bash commands should suffice to
 install the entire system:
 
 ```bash
-    docker volume create --name=data
-    docker-compose up
+docker volume create --name=data
+docker-compose up
 ```
 This will create a set of docker containers that will run the following system
 for you:   ![diagram of the
@@ -44,7 +44,7 @@ the visualization component
 *Please Note that this will also install all necessary dependencies in the
 *docker container*  
 ```bash
-    docker build -t nlescstoryteller/storyteller
+docker build -t nlescstoryteller/storyteller
 ```
 
 ### Manual installation of this component only
@@ -62,7 +62,9 @@ folder of this distribution.
 
 Some of the functions require resources that need to be cloned from
 
-    git clone https://github.com/cltl/vua-resources.git
+```
+git clone https://github.com/cltl/vua-resources.git
+```
 
 The download of these resources is included in the install.sh script. The
 scripts assume these resources to be present next to the installation of the
@@ -70,25 +72,27 @@ StoryTeller. If not, you need to adapt the paths in the scripts.
 
 _Manual Installation_
 ```bash
-    git clone https://github.com/cltl/StoryTeller
-    cd StoryTeller
-    chmod +wrx install.sh
-    ./install.sh
+git clone https://github.com/cltl/StoryTeller
+cd StoryTeller
+chmod +wrx install.sh
+./install.sh
 ```
 
 The install.sh will build the binary through apache-maven-2.2.1 and the pom.xml
 and move it to the "lib" folder.
 
 # LICENSE
-    StoryTeller is free software: you can redistribute it and/or modify
-    it under the terms of the The Apache License, Version 2.0:
-        http://www.apache.org/licenses/LICENSE-2.0.txt.
 
-    StoryTeller is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    License for more details.
+```
+StoryTeller is free software: you can redistribute it and/or modify
+it under the terms of the The Apache License, Version 2.0:
+    http://www.apache.org/licenses/LICENSE-2.0.txt.
 
+StoryTeller is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+License for more details.
+```
 
 # DESCRIPTION of the CLTL/StoryTeller component
 
@@ -337,17 +341,17 @@ Return
     gzip file with the token index in which the URI of a source is mapped to the token layer from NAF:
     
 ```xml
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <index>
-    <text>
-    <url><![CDATA[https://web.archive.org/web/20161107201934/https://www.yahoo.com/news/disney-measles-outbreak-sparked-vaccination-debate-ends-204440487.html?ref=gs]]></url>
-    <wf id="w1" sent="1" length="6" offset="0"><![CDATA[Disney]]></wf>
-    <wf id="w2" sent="1" length="7" offset="7"><![CDATA[measles]]></wf>
-    <wf id="w3" sent="1" length="8" offset="15"><![CDATA[outbreak]]></wf>
-    <wf id="w4" sent="1" length="4" offset="24"><![CDATA[that]]></wf>
-    <wf id="w5" sent="1" length="7" offset="29"><![CDATA[sparked]]></wf>
-    <wf id="w6" sent="1" length="11" offset="37"><![CDATA[vaccination]]></wf>
-    </text>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<index>
+<text>
+<url><![CDATA[https://web.archive.org/web/20161107201934/https://www.yahoo.com/news/disney-measles-outbreak-sparked-vaccination-debate-ends-204440487.html?ref=gs]]></url>
+<wf id="w1" sent="1" length="6" offset="0"><![CDATA[Disney]]></wf>
+<wf id="w2" sent="1" length="7" offset="7"><![CDATA[measles]]></wf>
+<wf id="w3" sent="1" length="8" offset="15"><![CDATA[outbreak]]></wf>
+<wf id="w4" sent="1" length="4" offset="24"><![CDATA[that]]></wf>
+<wf id="w5" sent="1" length="7" offset="29"><![CDATA[sparked]]></wf>
+<wf id="w6" sent="1" length="11" offset="37"><![CDATA[vaccination]]></wf>
+</text>
 ```
 
 6. Outputting
@@ -395,22 +399,22 @@ Any update of the KnowledgeStore requires running the script again to update the
 The user may wish to connect to the running docker components for troubleshooting purposes. The following is a list of possible commands to connect to the various components.
 **linux**
 ```bash
-    sudo docker exec -v data:/data -it nlescstoryteller/storyteller /bin/bash
-    sudo docker exec -v data:/data -it nlescstoryteller/query-builder-preprocessing /bin/bash
-    sudo docker exec -v data:/data -it nlescstoryteller/query-builder-server /bin/bash
-    sudo docker exec -v data:/data -it nlescstoryteller/query-builder-daemon /bin/bash    
-    sudo docker exec -it nlescstoryteller/query-builder-client /bin/bash
-    sudo docker exec -it nlescstoryteller/uncertainty-visualization /bin/bash
+sudo docker exec -v data:/data -it nlescstoryteller/storyteller /bin/bash
+sudo docker exec -v data:/data -it nlescstoryteller/query-builder-preprocessing /bin/bash
+sudo docker exec -v data:/data -it nlescstoryteller/query-builder-server /bin/bash
+sudo docker exec -v data:/data -it nlescstoryteller/query-builder-daemon /bin/bash    
+sudo docker exec -it nlescstoryteller/query-builder-client /bin/bash
+sudo docker exec -it nlescstoryteller/uncertainty-visualization /bin/bash
 ```
 
 **windows**
 ```bash
-    winpty docker exec -v data:/data -it nlescstoryteller/storyteller //bin/bash
-    winpty docker exec -v data:/data -it nlescstoryteller/query-builder-preprocessing //bin/bash
-    winpty docker exec -v data:/data -it nlescstoryteller/query-builder-server //bin/bash
-    winpty docker exec -v data:/data -it nlescstoryteller/query-builder-daemon //bin/bash    
-    winpty docker exec -it nlescstoryteller/query-builder-client //bin/bash
-    winpty docker exec -it nlescstoryteller/uncertainty-visualization //bin/bash    
+winpty docker exec -v data:/data -it nlescstoryteller/storyteller //bin/bash
+winpty docker exec -v data:/data -it nlescstoryteller/query-builder-preprocessing //bin/bash
+winpty docker exec -v data:/data -it nlescstoryteller/query-builder-server //bin/bash
+winpty docker exec -v data:/data -it nlescstoryteller/query-builder-daemon //bin/bash    
+winpty docker exec -it nlescstoryteller/query-builder-client //bin/bash
+winpty docker exec -it nlescstoryteller/uncertainty-visualization //bin/bash    
 ```
 
 ## References
