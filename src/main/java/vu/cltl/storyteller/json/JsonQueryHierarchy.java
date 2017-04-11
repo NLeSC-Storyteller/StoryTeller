@@ -35,6 +35,7 @@ public class JsonQueryHierarchy {
 
     static boolean DEBUG = false;
     static OutputStream outputStream = null;
+    static String resourceDir = "/Code/vu/newsreader/vua-resources/";
     static String fnPath = "/Code/vu/newsreader/vua-resources/frAllRelation.xml";
     static String esoPath = "/Code/vu/newsreader/vua-resources/ESO_Version2.owl";
     static String euroVocLabelFile = "/Code/vu/newsreader/vua-resources/mapping_eurovoc_skos.label.concept.gz";
@@ -76,6 +77,16 @@ public class JsonQueryHierarchy {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+            }
+            else if (arg.equals("--resource-dir") && args.length > (i + 1)) {
+                resourceDir = args[i+1];
+                esoPath = resourceDir+"/ESO_Version2.owl";
+                fnPath = resourceDir+"/frAllRelation.xml";
+                euroVocLabelFile = resourceDir+"/mapping_eurovoc_skos.label.concept.gz";
+                euroVocHierarchyFile = resourceDir+"/eurovoc_in_skos_core_concepts.rdf.gz";
+                entityHierarchyFile = resourceDir+"/DBpediaHierarchy_parent_child.tsv";
+                entityTypeFile = resourceDir+"/instance_types_en.ttl.gz";
+                entityCustomFile = resourceDir+"/";
             }
             else if (arg.equals("--eso") && args.length > (i + 1)) {
                 esoPath = args[i+1];

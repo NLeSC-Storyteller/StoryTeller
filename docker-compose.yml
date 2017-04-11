@@ -23,7 +23,7 @@ services:
     volumes:
       - data:/data
     links:
-      - query-builder-daemon:daemon
+      - query-builder-daemon:daemon # Do not change this line without changing sqlite/funcs/xenon_functions.c
 
   query-builder-client:
     restart: always
