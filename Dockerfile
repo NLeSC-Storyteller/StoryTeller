@@ -5,10 +5,6 @@
 FROM ubuntu:latest
 MAINTAINER m.vanmeersbergen@esciencecenter.nl
 
-# Generic stuff
-RUN locale-gen en_US.UTF-8
-ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
-
 # Update the APT cache
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -24,8 +20,12 @@ RUN apt-get install -y \
     python3-pip \
     cmake \
     build-essential \
-    libsqlite3-dev
-    
+    libsqlite3-dev \
+    locales
+
+# Generic stuff
+RUN /usr/sbin/locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'    
 
 # prepare for Java download
 RUN apt-get install -y python-software-properties
