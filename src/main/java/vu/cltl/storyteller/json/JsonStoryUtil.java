@@ -1231,10 +1231,12 @@ public class JsonStoryUtil {
                 Iterator oKeys = oActorObject.sortedKeys();
                 while (oKeys.hasNext()) {
                     String oKey = oKeys.next().toString();
+                    //System.err.println("oKey" + oKey);
                     try {
                         JSONArray actors = oActorObject.getJSONArray(oKey);
                         for (int j = 0; j < actors.length(); j++) {
                             String nextActor = actors.getString(j);
+                            //System.err.println("nextActor = " + nextActor);
                             if (!actorNames.contains(nextActor)) {
                                 nActorObject.append("actor:", nextActor);
                                 actorNames.add(nextActor);
@@ -1249,6 +1251,48 @@ public class JsonStoryUtil {
             }
             if (nActorObject.length()>0) {
                 oEvent.remove("actors");
+                try {
+                    // System.out.println("oActorObject.toString() = " + oActorObject.toString());
+                    // System.out.println("nActorObject.toString() = " + nActorObject.toString());
+                    oEvent.put("actors", nActorObject);
+                } catch (JSONException e) {
+                 //   e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public static void selectActors(ArrayList<JSONObject> events, String roles) {
+        String [] roleNameSpaces = roles.split(";");
+        for (int i = 0; i < events.size(); i++) {
+            JSONObject oEvent = events.get(i);
+            JSONObject nActorObject = new JSONObject();
+            JSONObject oActorObject = null;
+            try {
+                oActorObject = oEvent.getJSONObject("actors");
+                Iterator oKeys = oActorObject.sortedKeys();
+                while (oKeys.hasNext()) {
+                    String oKey = oKeys.next().toString();
+                    for (int r = 0; r < roleNameSpaces.length; r++) {
+                        String roleNameSpace = roleNameSpaces[r];
+                        if (oKey.startsWith(roleNameSpace)) {
+                            try {
+                                JSONArray actors = oActorObject.getJSONArray(oKey);
+                                for (int j = 0; j < actors.length(); j++) {
+                                    String nextActor = actors.getString(j);
+                                    nActorObject.append(oKey, nextActor);
+                                }
+                            } catch (JSONException e) {
+                                //  e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+               //  e.printStackTrace();
+            }
+            oEvent.remove("actors");
+            if (nActorObject.length()>0) {
                 try {
                     // System.out.println("oActorObject.toString() = " + oActorObject.toString());
                     // System.out.println("nActorObject.toString() = " + nActorObject.toString());
