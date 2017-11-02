@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/84448115.svg)](https://zenodo.org/badge/latestdoi/84448115)
+
 This README provides information about the complete storyteller software stack. If you are looking for information on the Computational Linguistics Library alone, please refer to [StoryTeller_Library.md](StoryTeller_Library.md)
 
 StoryTeller knowledge store querying and visualization suite.
