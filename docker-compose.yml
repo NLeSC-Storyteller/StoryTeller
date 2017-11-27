@@ -1,29 +1,31 @@
-version: '3'
+version: '3.0'
 services:
   query-builder-preprocessing:
     image: nlescstoryteller/query-builder-preprocessing
+    environment:
+      - KNOWLEDGE_STORE_SERVER_URL=${KNOWLEDGE_STORE_SERVER_URL}
     volumes:
       - data:/data
 
-  query-builder-daemon:
+  query-builder-xenon:    
+    image: nlescstoryteller/query-builder-xenon
+    environment:
+      - KNOWLEDGE_STORE_SERVER_URL=${KNOWLEDGE_STORE_SERVER_URL}
     restart: always
-    image: nlescstoryteller/query-builder-daemon
     volumes:
       - data:/data
     expose:
       - "4567"
-    links:
-      - query-builder-preprocessing:preprocessing
 
   query-builder-server:
-    restart: always
     image: nlescstoryteller/query-builder-server
+    restart: always    
     expose:
       - "5000"
     volumes:
       - data:/data
     links:
-      - query-builder-daemon:daemon # Do not change this line without changing sqlite/funcs/xenon_functions.c
+      - query-builder-xenon:xenon
 
   query-builder-client:
     restart: always
@@ -46,7 +48,7 @@ services:
     ports:
       - "80:80"
     links:
-      - query-builder-daemon
+      - query-builder-xenon
       - query-builder-server
       - query-builder-client
       - uncertainty-visualization

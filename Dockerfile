@@ -27,6 +27,10 @@ RUN apt-get install -y \
 RUN /usr/sbin/locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'    
 
+# install cwltool
+RUN apt-get install -y python-pip
+RUN pip install cwltool
+
 # prepare for Java download
 RUN apt-get install -y python-software-properties
 RUN apt-get install -y software-properties-common
@@ -38,8 +42,9 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN apt-get install -y oracle-java8-installer maven
 
 # node 
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
+RUN npm install -g yarn
 
 # environment
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle

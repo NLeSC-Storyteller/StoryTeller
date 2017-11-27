@@ -8,7 +8,7 @@ RESOURCES="$( cd $ROOT && cd .. && pwd)"/vua-resources
 # git clone https://github.com/cltl/vua-resources.git
 
 #KnowledgeStore server address and credentials if needed
-SERVER="http://130.37.53.35:50053"
+SERVER=$KNOWLEDGE_STORE_SERVER_URL
 KS="nwr/wikinews-new"
 KSUSER="wikinews"
 KSPASS="wikinews"

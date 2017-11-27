@@ -45,7 +45,7 @@ public class JsonQueryHierarchy {
     static String entityHierarchyFile = "/Code/vu/newsreader/vua-resources/DBpediaHierarchy_parent_child.tsv";
     static String entityCustomFile = "";
 
-    static String KSSERVICE = "http://130.37.53.35:50053";
+    static String KSSERVICE = "http://130.37.53.82:50053";
     static String KS = ""; //"nwr/wikinews-new";
     static String KSuser = ""; //"nwr/wikinews-new";
     static String KSpass = ""; //"nwr/wikinews-new";

@@ -7,7 +7,7 @@ RESOURCES="$( cd $ROOT && cd .. && pwd)"/vua-resources
 # assumes vua-resources is installed next to this installation
 # git clone https://github.com/cltl/vua-resources.git
 
-SERVER="http://130.37.53.35:50053/"
+SERVER="http://130.37.53.82:50053"
 LIMIT="100"
 KS="nwr/wikinews-new"
 KSUSER="wikinews"
