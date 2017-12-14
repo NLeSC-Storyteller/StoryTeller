@@ -45,7 +45,7 @@ public class JsonQueryHierarchy {
     static String entityHierarchyFile = "/Code/vu/newsreader/vua-resources/DBpediaHierarchy_parent_child.tsv";
     static String entityCustomFile = "";
 
-    static String KSSERVICE = "http://130.37.53.82:50053";
+    static String KSSERVICE = System.getenv("KNOWLEDGE_STORE_SERVER_URL");
     static String KS = ""; //"nwr/wikinews-new";
     static String KSuser = ""; //"nwr/wikinews-new";
     static String KSpass = ""; //"nwr/wikinews-new";
@@ -271,7 +271,7 @@ public class JsonQueryHierarchy {
                 System.out.println("simpleTaxonomy.getTops().size() = " + simpleTaxonomy.getTops().size());
             }
 
-            String sparqlPhrases = SparqlGenerator.makeSparqlQueryForDarkEntitiesFromKs();
+            String sparqlPhrases = SparqlGenerator.makeSparqlQueryForDarkEntitiesFromKsCount();
             if (DEBUG)  System.out.println("Reading hiearchy mapping file = " + hierarchyMappingFile);
             HashMap<String, String> map = Util.ReadFileToStringStringHashMap(hierarchyMappingFile);
             if (DEBUG) System.out.println("Nr. of hierarchy mappings = " + map.size());
