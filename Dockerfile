@@ -53,11 +53,6 @@ ENV PYTHON_HOME /usr/lib/python3
 # make barebones
 RUN mkdir /src
 
-# download and unzip git releases
-
-# vua-resources (done by install script of cltl/StoryTeller)
-# RUN git clone https://github.com/cltl/vua-resources.git /src/vua-resources/
-
 # cltl/StoryTeller
 RUN mkdir /src/StoryTeller
 COPY pom.xml install.sh /src/StoryTeller/
@@ -68,20 +63,3 @@ WORKDIR /src/StoryTeller
 RUN chmod +wrx install.sh
 RUN sync
 RUN ./install.sh
-
-# # Setup git to hadle line endings properly
-# RUN git config --global core.autocrlf input
-
-# # query-builder-server
-# RUN git clone https://github.com/NLeSC-StoryTeller/query-builder-server.git /src/query-builder-server/
-# WORKDIR /src/query-builder-server
-# RUN npm install
-
-# # query-builder-daemon
-# RUN git clone https://github.com/NLeSC-StoryTeller/query-builder-daemon.git /src/query-builder-daemon/
-# WORKDIR /src/query-builder-daemon/
-# RUN ./gradlew installDist
-
-# # query-builder-preprocessing
-# RUN git clone https://github.com/NLeSC-StoryTeller/query-builder-preprocessing.git /src/query-builder-preprocessing/
-# # WORKDIR /src/query-builder-preprocessing
