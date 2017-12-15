@@ -7,7 +7,17 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT="$( cd $DIR && cd .. && pwd)"
 
+echo "#Installing nwr-triple-api"
+if [ ! -d "$PARENT/nwr-triple-api" ]; then
+    cd "$PARENT"
+    git clone https://github.com/cltl/nwr-triple-api.git
+    cd "nwr-triple-api"
+    mvn clean
+    mvn install
+fi
+
 echo "Compiling the library from source code and dependencies"
+cd "$PARENT/StoryTeller"
 mvn clean
 mvn install
 
